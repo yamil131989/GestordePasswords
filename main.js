@@ -8,6 +8,14 @@ class Usuario{
     }
 }
 
+//Comienza el programa
+Menu()
+
+
+
+
+
+
 
 ///============================================================Encriptacion Algoritmo Cesar
 function encriptarCesar(user){
@@ -42,6 +50,8 @@ function encriptarCesar(user){
     return user
 }
 
+///============================================================Decriptacion Algoritmo Cesar
+
 function dencriptarCesar(){
     let letra = ''
     let mensaje = ''
@@ -75,6 +85,8 @@ function encriptacionInversa(frase,usuario){
     console.log(resultado)
     return usuario    
 }
+
+///============================================================Decriptacion Inversa
 
 function dencriptacionInversa(){
     
@@ -169,6 +181,3 @@ function Menu(){
 
     return user
 }
-
-Menu()
-

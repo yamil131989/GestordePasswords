@@ -1,5 +1,30 @@
+// - **Condicionales**
+// - **Ciclos y bucles**
+// - Funciones
+// - Objetos
+//     - Literales: usamos objetos literales cuando queremos armar uno o pocos objetos de forma rápida, y que estos objetos no tengan una semejanza importante
+//     - Instanciados de una class: declaramos una class (una clase) cuando sabemos que vamos a tener varios objetos que tienen la misma estructura. Entonces es mucho mas sencillo de generar como de instanciar si tenemos el molde (la class)
+// - Arrays […], los métodos y propiedades mas útiles
+//     - length
+//     - push(…)
+//     - shift(…) y pop(…)
+//     - filter(…)
+//     - forEach(…) (saber cuando usar forEach, for of o un for común)
+//     - find(…)
+//     - Para los métodos que requieren de una funcion como argumento, siempre intentar usar la ⇒ (arrow function)
+
+
+
+//frase_passwd + algoritmo = contraseña
+
+////inicio del sistema el usuario ve el menu. desea generar una password y la guarda en un array de passwords del usuario
+
+//las muestra
+//las elimina
+
 
 const alfabeto = "abcdefghijklmnopqrstuvwxyz" 
+
 
 class Usuario{
     constructor(nombre){
@@ -11,9 +36,17 @@ class Usuario{
 
 
 ///============================================================Encriptacion Algoritmo Cesar
-function encriptarCesar(frase,clave,user){
-
-
+function encriptarCesar(user){
+    let frase = prompt("Ingrese la frase ")
+    let clave = parseInt(prompt("Ingrese la clave cesar, rotacion de alfabeto"))
+    let flag = true
+    while(flag){
+        if ((clave>26) || (clave<1) || isNaN(clave)) {
+            clave = parseInt(prompt("Ingrese la clave cesar, rotacion de alfabeto"))
+        } else {                   
+            flag = false
+        }                
+    } 
     
     let letra = ''
     let mensaje = ''
@@ -59,7 +92,7 @@ function dencriptarCesar(){
 ///============================================================Encriptacion Inversa
 // 
 
-function EncriptacionInversa(frase,usuario){
+function encriptacionInversa(frase,usuario){
     let temp = frase.split('')
     let resultado = temp.reverse()
     resultado = resultado.join("")
@@ -69,7 +102,7 @@ function EncriptacionInversa(frase,usuario){
     return usuario    
 }
 
-function DencriptacionInversa(){
+function dencriptacionInversa(){
     
     let frase = prompt("Ingrese la frase")
     let temp = frase.split('')
@@ -82,7 +115,7 @@ function DencriptacionInversa(){
 }
 
 ///============================================================Eliminar password
-function EliminarPassAlmacenada(user){
+function eliminarPassAlmacenada(user){
     console.table(user.claves)
     
     let indice = Number(prompt("Ingrese el indice de la password a eliminar "))
@@ -118,18 +151,10 @@ function Menu(){
         console.log("=============")
 
         let opcion = Number(prompt("Ingrese una opcion"))
-        if(opcion ==1){
-            let frase = prompt("Ingrese la frase ")
-            let clave = parseInt(prompt("Ingrese la clave cesar, rotacion de alfabeto"))
-            let flag = true
-            while(flag){
-                if((clave>26) || (clave<1)){
-                    clave = Number(prompt("Ingrese la clave cesar, rotacion de alfabeto"))
-                } else {
-                    encriptarCesar(frase,clave,user)
-                    flag = false
-                }                
-            }                        
+        if(opcion ==1){            
+            
+            encriptarCesar(user)                       
+
         } else if(opcion ==2){
             
              dencriptarCesar()
@@ -137,11 +162,11 @@ function Menu(){
         } else if(opcion ==3){
             
             let frase = prompt("Ingrese la frase ")
-            EncriptacionInversa(frase,user)
+            encriptacionInversa(frase,user)
             //tipo 3 caracteres especiales
 
         } else if(opcion==4){            
-            DencriptacionInversa()
+            dencriptacionInversa()
         }
           else if(opcion==5){
             console.log("Mostrando contraseñas")
@@ -149,12 +174,16 @@ function Menu(){
 
         }  else if(opcion==6){
             //console.log("Eliminar password almacenada ")
-            EliminarPassAlmacenada(user)
+            eliminarPassAlmacenada(user)
 
         } else if(opcion==7){
-            console.log("Saliendo")
-            break
-
+            if (confirm("Resetear?")){                                                                                
+                Menu()
+            } else {
+                console.log("Saliendo")
+                break
+            }
+                        
         }else {
             console.log("Ingrese una opcion valida")
         }
@@ -168,6 +197,4 @@ function Menu(){
 }
 
 Menu()
-
-
 
